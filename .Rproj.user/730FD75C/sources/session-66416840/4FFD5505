@@ -3,7 +3,7 @@
     "path": "~/R/apps/confirmation_bias/functions.R",
     "project_path": "functions.R",
     "type": "r_source",
-    "hash": "4022291183",
+    "hash": "0",
     "contents": "",
     "dirty": false,
     "created": 1683890320431.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "22,1",
-        "scrollLine": "0"
+        "cursorPosition": "36,1",
+        "scrollLine": "11"
     },
     "folds": "",
-    "lastKnownWriteTime": 1683891387,
+    "lastKnownWriteTime": 1683893885,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1683891387,
+    "last_content_update": 1683893885331,
     "read_only": false,
     "read_only_alternatives": []
 }

@@ -1,5 +1,7 @@
 # The rule. Three numbers, in any ascending order
 
+library(magrittr)
+
 # Test test
 right1 <- c(2, 4, 6)
 right2 <- c(-2, 6, 110)
@@ -8,6 +10,18 @@ wrong2 <- c(1, 2, 0)
 wrong3 <- c(1, 2, "3")
 
 tests <- list(right1, right2, wrong1, wrong2, wrong3)
+
+clean_test <- "2, 4, 6"
+# Takes a list of three numbers and cleans it.
+clean_input <- function(numbers) {
+  # Assumes three digits in a string, separated by a comma
+  # Removes whitespace, then splits on comma, turns into numeric
+  out <- numbers %>% 
+    stringr::str_remove_all(" ") %>% 
+    stringr::str_split_1(",") %>% 
+    as.numeric()
+  out
+}
 
 # A function that evaluates the attempt and returns TRUE/FALSE.
 test_rule <- function(attempt) {
