@@ -1,9 +1,9 @@
 {
     "id": "4FFD5505",
-    "path": "~/R/apps/confirmation_bias/ruleOfThree.R",
-    "project_path": "ruleOfThree.R",
+    "path": "~/R/apps/confirmation_bias/functions.R",
+    "project_path": "functions.R",
     "type": "r_source",
-    "hash": "0",
+    "hash": "4022291183",
     "contents": "",
     "dirty": false,
     "created": 1683890320431.0,
@@ -20,7 +20,7 @@
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1683891387746,
+    "last_content_update": 1683891387,
     "read_only": false,
     "read_only_alternatives": []
 }
