@@ -2,6 +2,8 @@
 
 library(shiny)
 
+source("functions.R")
+
 ui <- fluidPage(
   
   titlePanel("A simple test"),
@@ -15,7 +17,8 @@ ui <- fluidPage(
     ),
     column(width = 4,
            h3("Enter numbers here"),
-           textInput("text", label = , "Enter three numbers, seperated by commas", value = "2, 4, 6")
+           textInput("text", label = "Enter three numbers, seperated by commas", value = "2, 4, 6"),
+           actionButton("do", label = "Check")
     )
   ),
   fluidRow(
@@ -28,9 +31,11 @@ ui <- fluidPage(
 
 server <- function(input, output) {
   
+  # Stuck here. How to get the button to cause a reaction?
+  out <- eventReactive(input$do, {
+    output$value <- renderPrint({input$text})
+  })
   
-  
-  output$value <- renderPrint({ input$text })
 }
 
 shinyApp(ui = ui, server = server)
