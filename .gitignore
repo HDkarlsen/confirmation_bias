@@ -1,5 +1,6 @@
-.Rproj.user
+.Rproj.user/r
 *.xlsx
 rsconnect/
 */scratchpad.R
-
+*_cache/
+/cache/
