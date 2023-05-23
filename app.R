@@ -31,9 +31,14 @@ ui <- fluidPage(
 
 server <- function(input, output) {
   
-  # Stuck here. How to get the button to cause a reaction?
+  # Reacts when button is pressed
   out <- eventReactive(input$do, {
-    output$value <- renderPrint({input$text})
+    input$text
+  })
+  
+  # Sends results to the ui.
+  output$value <- renderPrint({
+    out()
   })
   
 }
