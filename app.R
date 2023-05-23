@@ -33,7 +33,8 @@ server <- function(input, output) {
   
   # Reacts when button is pressed
   out <- eventReactive(input$do, {
-    input$text
+    input$text %>% 
+      run_test()
   })
   
   # Sends results to the ui.
