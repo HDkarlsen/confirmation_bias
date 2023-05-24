@@ -8,40 +8,46 @@ ui <- fluidPage(
   
   titlePanel("A simple test"),
   
-  fluidRow(
-    column(width = 6, 
-           p("I am thinking of a sequence of three numbers. These numbers follow a specific, simple rule. I would like you to guess 
-      the rule. To help you guess, I'll let you submit your own sequence of three numbers. I'll let you know if your submitted
-      sequence follows the rule I'm thinking of or not. You may submit as many sequences as you wish. When you believe that you
-      have found the rule, let me know and I'll give you the answer.")
+  sidebarLayout(
+    
+    sidebarPanel(
+      p("I am thinking of a ", strong("sequence of three numbers."), "These 
+      numbers follow a ", strong("specific, simple rule. "), "I would like 
+      you to ", strong("guess the rule. "), "To help you guess, I'll let you 
+      submit your own sequence of three numbers. I'll let you know if your 
+      submitted sequence follows the rule I'm thinking of or not. You may 
+      submit as many sequences as you wish. When you believe that you
+      have found the rule, write out your guess in the bottom text box
+      and submit it.")
     ),
-    column(width = 4,
-           h3("Enter numbers here"),
-           textInput("text", label = "Enter three numbers, seperated by commas", value = "2, 4, 6"),
-           actionButton("do", label = "Check")
+    
+    mainPanel(
+      
+      h3("Enter a sequence here"),
+      p("Enter a sequence of three numbers and press the button. You'll get 
+        feedback on whether your sequence follows the rule or not."),
+      textInput("text", label = "Enter three numbers, seperated by commas", value = "2, 4, 6"),
+      actionButton("do", label = "Check"),
+      
+      h2("Results"),
+      p('"TRUE" means that your sequence matches the rule. "FALSE" means 
+        that it does not.'),
+      textOutput("value"),
+      
+      h2("Think you know the answer?"),
+      p("When you believe that you know the rule that the sequence follows, 
+          you may submit it here. 
+          Note that you can only do it ONCE, so make sure you're satisfied 
+          with you answer before attempting. 
+          You don't have to worry about exact phrasing."),
+      textInput("rule_answer", label = "What is the rule that these three numbers follow?"),
+      actionButton("rule_given", label = "Submit"),
+      textOutput("true_rule")
     )
-  ),
-  fluidRow(
-    column(width = 7,
-           h2("Results"),
-           textOutput("value")
-    ),
-    column(width = 3,
-           h2("Think you know the answer?"),
-           p("When you believe that you know the rule that the sequence follows, you may submit it here. 
-             Note that you can only do it ONCE, so make sure you're satisfied with you answer before attempting. 
-             You don't have to worry about exact phrasing."),
-           textInput("rule_answer", label = "What is the rule that these three numbers follow?"),
-           actionButton("rule_given", label = "Submit"),
-           textOutput("true_rule")
-           )
   )
 )
 
 server <- function(input, output) {
-  
-  # Initialises rule_out for later (might not be necessary).
-  rule_out <- ""
   
   # Reacts when button is pressed
   out <- eventReactive(input$do, {
@@ -50,8 +56,13 @@ server <- function(input, output) {
   })
   
   # Sends results to the ui.
-  output$value <- renderPrint({
+  output$value <- renderText({
     out()
+  })
+  
+  # Makes the given rule reactive.
+  rule_in <- eventReactive(input$rule_given, {
+    input$rule_answer
   })
   
   # Initiates rule explanation when button is pressed
@@ -59,9 +70,9 @@ server <- function(input, output) {
     return('"Any numbers in ascending order"')
   })
   
-  # I'd like a linebreak. 
+  # Prints the true rule (line break not possible in renderText).
   output$true_rule <- renderText({
-    paste0('You said: "', input$rule_answer,  '"--- \n The real rule is: ', rule_out(),
+    paste0('The real rule is: ', rule_out(),
           ". Did you get it right?")
   })
   
