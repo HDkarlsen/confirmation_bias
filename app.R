@@ -2,8 +2,6 @@
 
 library(shiny)
 
-source("functions.R")
-
 ui <- fluidPage(
   
   titlePanel("A simple test"),
