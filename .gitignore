@@ -4,3 +4,4 @@ rsconnect/
 */scratchpad.R
 *_cache/
 /cache/
+.Rhistory

@@ -16,7 +16,8 @@ ui <- fluidPage(
       submitted sequence follows the rule I'm thinking of or not. You may 
       submit as many sequences as you wish. When you believe that you
       have found the rule, write out your guess in the bottom text box
-      and submit it.")
+      and submit it."),
+      p("An example of a sequence that follows the rule is: ", em("2, 4, 6"))
     ),
     
     mainPanel(
